@@ -22,9 +22,10 @@ public class DirectoryNodeBinder extends TreeViewBinder<DirectoryNodeBinder.View
     @Override
     public void bindView(ViewHolder holder, int position, TreeNode node) {
         holder.ivArrow.setRotation(0);
-        holder.ivArrow.setImageResource(R.drawable.ic_keyboard_arrow_right_black_18dp);
-        int rotateDegree = node.isExpand() ? 90 : 0;
-        holder.ivArrow.setRotation(rotateDegree);
+        holder.ivArrow.setImageResource(R.drawable.ic_expand_tree);
+//        int rotateDegree = node.isExpand() ? 90 : 0;
+//        holder.ivArrow.setRotation(rotateDegree);
+        holder.ivArrow.setImageResource(node.isExpand() ? R.drawable.ic_collapse_tree:R.drawable.ic_expand_tree);
         Dir dirNode = (Dir) node.getContent();
         holder.tvName.setText(dirNode.dirName);
         if (node.isLeaf())

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 import tellh.com.recyclertreeview.bean.Dir;
 import tellh.com.recyclertreeview.bean.File;
@@ -78,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
                     onToggle(!node.isExpand(), holder);
 //                    if (!node.isExpand())
 //                        adapter.collapseBrotherNode(node);
-                }
+                } else
+                    Log.i("TreeNode", "" + ((File) node.getContent()).fileName);
                 return false;
             }
 
@@ -86,9 +89,10 @@ public class MainActivity extends AppCompatActivity {
             public void onToggle(boolean isExpand, RecyclerView.ViewHolder holder) {
                 DirectoryNodeBinder.ViewHolder dirViewHolder = (DirectoryNodeBinder.ViewHolder) holder;
                 final ImageView ivArrow = dirViewHolder.getIvArrow();
-                int rotateDegree = isExpand ? 90 : -90;
+                /*int rotateDegree = isExpand ? 90 : -90;
                 ivArrow.animate().rotationBy(rotateDegree)
-                        .start();
+                        .start();*/
+                ivArrow.setImageResource(isExpand ? R.drawable.ic_collapse_tree : R.drawable.ic_expand_tree);
             }
         });
         rv.setAdapter(adapter);
